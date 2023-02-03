@@ -1,10 +1,15 @@
 import '@/styles/globals.css'
-import { ChakraProvider } from '@chakra-ui/provider'
+import Layout from '../components/layouts/main'
+import Fonts from '../components/fonts'
+import Chakra from '@/components/chakra'
 
-export default function App({ Component, pageProps }) {
+export default function App({ Component, pageProps, router }) {
 	return (
-		< ChakraProvider >
-			<Component {...pageProps} />
-		</ChakraProvider >
+		<Chakra cookies={pageProps.cookies}>
+			<Fonts />
+			<Layout router={router}>
+				<Component {...pageProps} key={router.route} />
+			</Layout>
+		</Chakra>
 	)
 }
