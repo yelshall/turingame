@@ -4,7 +4,7 @@ import {
 	Container,
 	Box
 } from '@chakra-ui/react'
-import ThemeToggleButton from './theme-toggle-button'
+import ThemeToggleButton from '@/app/(components)/theme-toggle-button'
 
 export default function Navbar(props) {
 	return (
