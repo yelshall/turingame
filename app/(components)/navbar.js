@@ -1,10 +1,12 @@
+'use client';
+
 import {
 	Container,
 	Box
 } from '@chakra-ui/react'
 import ThemeToggleButton from './theme-toggle-button'
 
-const Navbar = props => {
+export default function Navbar(props) {
 	return (
 		<Box
 			position="fixed"
@@ -27,7 +29,5 @@ const Navbar = props => {
 				</Box>
 			</Container>
 		</Box>
-	)
-}
-
-export default Navbar
+	);
+};

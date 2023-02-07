@@ -1,7 +1,9 @@
+'use client';
+
 import { IconButton, useColorMode, useColorModeValue } from '@chakra-ui/react'
 import { SunIcon, MoonIcon } from '@chakra-ui/icons'
 
-const ThemeToggleButton = () => {
+export default function ThemeToggleButton() {
 	const { toggleColorMode } = useColorMode()
 
 	return (
@@ -11,7 +13,5 @@ const ThemeToggleButton = () => {
 			icon={useColorModeValue(<MoonIcon />, <SunIcon />)}
 			onClick={toggleColorMode}
 		></IconButton>
-	)
-}
-
-export default ThemeToggleButton
+	);
+};
