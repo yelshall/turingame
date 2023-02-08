@@ -1,25 +1,25 @@
 'use client';
 
 import { ColorModeScript, Box, Container } from '@chakra-ui/react'
-import theme from '@/app/(lib)/theme'
+import Theme from '@/app/(lib)/theme'
 import NavBar from '@/app/(components)/navbar'
 import Footer from '@/app/(components)/footer'
-import Chakra from '@/app/(components)/chakra'
+import Providers from '@/app/(components)/providers'
 import Fonts from '@/app/(components)/fonts';
 
 export default function Template({ children }) {
 	return (
-		<Chakra>
-			<ColorModeScript initialColorMode={theme.config.initialColorMode} />
+		<Providers>
+			<ColorModeScript initialColorMode={Theme.config.initialColorMode} />
 			<Fonts />
-			<Box pb={8}>
+			<Box h='100%' display={'flex'} flexDir={'column'}>
 				<NavBar />
 
-				<Container maxW="container.xl" pt={14}>
+				<Container h='100%' maxW="container.xl">
 					{children}
 				</Container>
 				<Footer />
 			</Box>
-		</Chakra>
+		</Providers>
 	);
 };

@@ -14,11 +14,11 @@ import ProfileButton from '@/app/(components)/profile-button';
 export default function Navbar(props) {
 	return (
 		<Box
-			position="fixed"
 			as="nav"
 			w="100%"
 			zIndex={2}
 			bg='transparent'
+			mb={'auto'}
 			{...props}
 		>
 			<Container
@@ -26,7 +26,7 @@ export default function Navbar(props) {
 				flexDirection={'row'}
 				p={2}
 				maxW="container.xxl"
-				wrap="wrap"
+				flexWrap={'wrap'}
 				alignItems={'center'}
 			>
 				<Box
