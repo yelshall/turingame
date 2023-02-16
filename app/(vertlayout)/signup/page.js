@@ -1,7 +1,7 @@
-export default function SignupPage() {
-	return (
-		<>
-			Sign Up
-		</>
-	)
+'use client';
+
+import SignupCard from '@/app/(components)/signup';
+
+export default function Page() {
+  return <SignupCard/>
 }
