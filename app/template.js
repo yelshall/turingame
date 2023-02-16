@@ -1,11 +1,11 @@
 'use client';
 
 import { ColorModeScript, Box, Container } from '@chakra-ui/react'
-import theme from '@/app/(lib)/theme'
-import NavBar from '@/app/(components)/navbar'
-import Footer from '@/app/(components)/footer'
-import Chakra from '@/app/(components)/chakra'
-import Fonts from '@/app/(components)/fonts';
+import theme from './(lib)/theme'
+import NavBar from './(components)/navbar.tsx'
+import Footer from './(components)/footer.tsx'
+import Chakra from './(components)/chakra'
+import Fonts from './(components)/fonts';
 
 export default function Template({ children }) {
 	return (
@@ -14,7 +14,6 @@ export default function Template({ children }) {
 			<Fonts />
 			<Box pb={8}>
 				<NavBar />
-
 				<Container maxW="container.xl" pt={14}>
 					{children}
 				</Container>

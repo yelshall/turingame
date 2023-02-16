@@ -1,8 +1,13 @@
+'use client';
+
+import Hero from './(components)/hero'
+import Featuers from './(components)/featuers'
+import WithLargeQuote from './(components)/largeQuote'
+
+
 export default function Home() {
 	return (
-	  <div>
-	  	hello world
-	  </div>
+		<><Hero /><Featuers /> <WithLargeQuote/></>
 	)
   }
   
