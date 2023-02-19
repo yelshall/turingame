@@ -15,11 +15,13 @@ import {
 } from '@chakra-ui/react';
 import Link from 'next/link';
 import { FcGoogle } from 'react-icons/fc';
-import { Center } from '@chakra-ui/react';
+import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 // import { verifyEmail } from '@/app/(util)/util';
 
 export default function Page() {
+	const router = useRouter();
+
 	const [show, setShow] = useState(false)
 	const handleClick = () => setShow(!show)
 
@@ -61,7 +63,7 @@ export default function Page() {
 						</InputRightElement>
 					</InputGroup>
 				</FormControl>
-				<Button bg='#2A4365'>Continue</Button>
+				<Button bg='#2A4365' onClick={() => {router.push('/terms')}}>Continue</Button>
 				<Box display='flex' flexDir='row'>
 					<Text>Have an account?</Text> <Text pl='2px' color={'#2B6CB0'}><Link href='/login'>Sign in</Link></Text>
 				</Box>
