@@ -12,6 +12,7 @@ export default function ThemeToggleButton() {
 			colorScheme={useColorModeValue('purple', 'orange')}
 			icon={useColorModeValue(<MoonIcon />, <SunIcon />)}
 			onClick={toggleColorMode}
+			className="bg-red-200"
 		></IconButton>
 	);
 };

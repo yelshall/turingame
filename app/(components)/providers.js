@@ -3,7 +3,7 @@
 import {
 	ChakraProvider
 } from '@chakra-ui/react'
-import theme from '@/app/(lib)/theme'
+import theme from '../(lib)/theme'
 
 export default function Providers({ children }) {
 	return (
