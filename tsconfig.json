@@ -28,7 +28,7 @@
     ".next/types/**/*.ts",
     "**/*.ts",
     "**/*.tsx"
-, "app/(lib)/theme.js", "app/(vertlayout)/login/page.js", "app/(vertlayout)/register/page.js", "app/(components)/signup.js", "app/(components)/signin.js", "app/(components)/features.js", "app/(components)/largeQuote.js", "app/(components)/hero.js"  ],
+  ],
   "exclude": [
     "node_modules"
   ]
