@@ -14,14 +14,19 @@ const styles = {
 const components = {
 }
 
+const colors = {
+	light: '#F7FAFC',
+	dark: '#2D3748'
+}
+
 const fonts = {
 	heading: "'M PLUS Rounded 1c'"
 }
 
 const config = {
 	initialColorMode: 'dark',
-	useSystemColorMode: true
+	useSystemColorMode: false
 }
 
-const theme = extendTheme({ config, styles, components, fonts })
-export default theme
+const Theme = extendTheme({ config, styles, components, colors, fonts })
+export default Theme
