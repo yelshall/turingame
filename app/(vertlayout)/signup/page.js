@@ -1,112 +1,77 @@
 'use client';
 
 import {
-	Flex,
-	Box,
 	FormControl,
 	FormLabel,
 	Input,
-	InputGroup,
-	HStack,
-	InputRightElement,
 	Stack,
 	Button,
 	Heading,
 	Text,
-	useColorModeValue,
-	Link,
+	Divider,
+	Box,
+	InputRightElement,
+	InputGroup
 } from '@chakra-ui/react';
-import { useState } from 'react';
-import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
+import Link from 'next/link';
 import { FcGoogle } from 'react-icons/fc';
 import { Center } from '@chakra-ui/react';
+import { useState } from 'react';
+// import { verifyEmail } from '@/app/(util)/util';
 
 export default function Page() {
-	const [showPassword, setShowPassword] = useState(false);
+	const [show, setShow] = useState(false)
+	const handleClick = () => setShow(!show)
+
+	const [email, setEmail] = useState("")
+	const [password, setPassword] = useState("")
 
 	return (
-		<Flex
-			minH={'100vh'}
-			align={'center'}
-			justify={'center'}
-			bg={useColorModeValue('gray.50', 'gray.900')}>
-			<Stack spacing={8} mx={'auto'} maxW={'lg'} py={12} px={6}>
-				<Stack align={'center'}>
-					<Heading fontSize={'4xl'} textAlign={'center'}>
-						Sign up
-					</Heading>
-					<Text fontSize={'lg'} color={'gray.600'}>
-						to enjoy all of our cool features ✌️
-					</Text>
-				</Stack>
-				<Box
-					rounded={'lg'}
-					bg={useColorModeValue('white', 'gray.700')}
-					boxShadow={'lg'}
-					p={8}>
-					<Stack spacing={4}>
-						<HStack>
-							<Box>
-								<FormControl id="firstName" isRequired>
-									<FormLabel>First Name</FormLabel>
-									<Input type="text" />
-								</FormControl>
-							</Box>
-							<Box>
-								<FormControl id="lastName">
-									<FormLabel>Last Name</FormLabel>
-									<Input type="text" />
-								</FormControl>
-							</Box>
-						</HStack>
-						<FormControl id="email" isRequired>
-							<FormLabel>Email address</FormLabel>
-							<Input type="email" />
-						</FormControl>
-						<FormControl id="password" isRequired>
-							<FormLabel>Password</FormLabel>
-							<InputGroup>
-								<Input type={showPassword ? 'text' : 'password'} />
-								<InputRightElement h={'full'}>
-									<Button
-										variant={'ghost'}
-										onClick={() =>
-											setShowPassword((showPassword) => !showPassword)
-										}>
-										{showPassword ? <ViewIcon /> : <ViewOffIcon />}
-									</Button>
-								</InputRightElement>
-							</InputGroup>
-						</FormControl>
-						<Stack spacing={10} pt={2}>
-							<Button
-								loadingText="Submitting"
-								size="lg"
-								bg={'blue.400'}
-								color={'white'}
-								_hover={{
-									bg: 'blue.500',
-								}}>
-								Sign up
+		<Box
+			display='flex'
+			flexDir={'column'}
+			w='100%'
+			h='100%'
+			justifyContent='center'
+			alignItems={'center'}
+		>
+			<Heading fontSize={'4xl'} pb='16px'>Create your account</Heading>
+			<Stack>
+				<FormControl pb='8px'>
+					<FormLabel>Email address</FormLabel>
+					<Input
+						value={email}
+						onChange={(event) => setEmail(event.target.value)}
+						placeholder='Enter email' w='300px' type="email"
+					/>
+				</FormControl>
+				<FormControl pb='8px'>
+					<FormLabel>Password</FormLabel>
+					<InputGroup w='300px' type="password" >
+						<Input
+							value={password}
+							type={show ? 'text' : 'password'}
+							placeholder='Enter password'
+							onChange={(event) => setPassword(event.target.value)}
+						/>
+						<InputRightElement width='4.5rem'>
+							<Button h='1.75rem' size='sm' onClick={handleClick}>
+								{show ? 'Hide' : 'Show'}
 							</Button>
-						</Stack>
-						<Button
-							w={'full'}
-							maxW={'md'}
-							variant={'outline'}
-							leftIcon={<FcGoogle />}>
-							<Center>
-								<Text>Sign up with Google</Text>
-							</Center>
-						</Button>
-						<Stack pt={6}>
-							<Text align={'center'}>
-								Already a user? <Link color={'blue.400'}>Login</Link>
-							</Text>
-						</Stack>
-					</Stack>
+						</InputRightElement>
+					</InputGroup>
+				</FormControl>
+				<Button bg='#2A4365'>Continue</Button>
+				<Box display='flex' flexDir='row'>
+					<Text>Have an account?</Text> <Text pl='2px' color={'#2B6CB0'}><Link href='/login'>Sign in</Link></Text>
 				</Box>
+				<Divider />
+				<Button
+					variant={'outline'}
+					leftIcon={<FcGoogle />}>
+						Continue with Google
+				</Button>
 			</Stack>
-		</Flex>
-	)
+		</Box>
+	);
 }

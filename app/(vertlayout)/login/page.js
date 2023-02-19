@@ -1,81 +1,82 @@
 'use client';
 
 import {
-	Flex,
-	Box,
 	FormControl,
 	FormLabel,
 	Input,
-	Checkbox,
 	Stack,
-	Link,
 	Button,
 	Heading,
 	Text,
-	useColorModeValue,
+	Divider,
+	Box,
+	InputRightElement,
+	InputGroup
 } from '@chakra-ui/react';
-
+import Link from 'next/link';
 import { FcGoogle } from 'react-icons/fc';
-import { Center } from '@chakra-ui/react';
+import { useEffect, useState } from 'react';
+// import { verifyEmail } from '@/app/(util)/util';
 
 export default function Page() {
+	const [show, setShow] = useState(false)
+	const handleClick = () => setShow(!show)
+
+	const [email, setEmail] = useState("")
+	const [password, setPassword] = useState("")
+
+	useEffect(() => {
+		console.log(email, password)
+	}, [email, password])
 	return (
-		<Flex
-			minH={'100vh'}
-			align={'center'}
-			justify={'center'}
-			bg={useColorModeValue('gray.50', 'gray.900')}>
-			<Stack spacing={8} mx={'auto'} maxW={'lg'} py={12} px={6}>
-				<Stack align={'center'}>
-					<Heading fontSize={'4xl'}>Sign in to your account</Heading>
-					<Text fontSize={'lg'} color={'gray.600'}>
-						to enjoy all of our cool <Link color={'blue.400'}>features</Link> ✌️
-					</Text>
-				</Stack>
-				<Box
-					rounded={'lg'}
-					bg={useColorModeValue('white', 'gray.700')}
-					boxShadow={'lg'}
-					p={8}>
-					<Stack spacing={4}>
-						<FormControl id="email">
-							<FormLabel>Email address</FormLabel>
-							<Input type="email" />
-						</FormControl>
-						<FormControl id="password">
-							<FormLabel>Password</FormLabel>
-							<Input type="password" />
-						</FormControl>
-						<Stack spacing={10}>
-							<Stack
-								direction={{ base: 'column', sm: 'row' }}
-								align={'start'}
-								justify={'space-between'}>
-								<Checkbox>Remember me</Checkbox>
-								<Link color={'blue.400'}>Forgot password?</Link>
-							</Stack>
-							<Button
-								bg={'blue.400'}
-								variant={'outline'}
+		<Box
+			display='flex'
+			flexDir={'column'}
+			w='100%'
+			h='100%'
+			justifyContent='center'
+			alignItems={'center'}
+		>
+			<Heading fontSize={'4xl'} pb='16px'>Welcome back</Heading>
+			<Stack>
+				<FormControl pb='8px'>
+					<FormLabel>Email address</FormLabel>
+					<Input
+						value={email}
+						onChange={(event) => setEmail(event.target.value)}
+						placeholder='Enter email' w='300px' type="email"
+					/>
+				</FormControl>
 
-							>
-								<Text>Sign in </Text>
+				<FormControl pb='8px'>
+					<FormLabel>Password</FormLabel>
+					<InputGroup w='300px' type="password" >
+						<Input
+							value={password}
+							type={show ? 'text' : 'password'}
+							placeholder='Enter password'
+							onChange={(event) => setPassword(event.target.value)}
+						/>
+						<InputRightElement width='4.5rem'>
+							<Button h='1.75rem' size='sm' onClick={handleClick}>
+								{show ? 'Hide' : 'Show'}
 							</Button>
+						</InputRightElement>
+					</InputGroup>
+				</FormControl>
 
-						</Stack>
-
-						<Button
-							w={'full'}
-							maxW={'md'}
-							variant={'outline'}
-							leftIcon={<FcGoogle />}>
-							<Center>
-								<Text>Sign in with Google</Text>
-							</Center>
-						</Button>
-					</Stack>
+				<Text pb='8px' color={'#2B6CB0'}><Link href='/forgot'>Forgot password</Link></Text>
+				<Button bg='#2A4365'>Sign in</Button>
+				<Box display='flex' flexDir='row'>
+					<Text>Don't have an account?</Text> <Text pl='2px' color={'#2B6CB0'}><Link href='/signup'>Sign up</Link></Text>
 				</Box>
-			</Stack>
-		</Flex>
+				<Divider />
+				<Button
+					variant={'outline'}
+					leftIcon={<FcGoogle />}>
+					Continue with Google
+				</Button>
+			</Stack >
+		</Box >
 	);
 }
