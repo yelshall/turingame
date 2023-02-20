@@ -22,8 +22,6 @@ import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
 import { Center } from '@chakra-ui/react';
 
 export default function Page() {
-  const [showPassword, setShowPassword] = useState(false);
-
   return (
     <Flex
       minH={'100vh'}
