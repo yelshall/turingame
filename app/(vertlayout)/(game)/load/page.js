@@ -6,10 +6,8 @@ import {
 	Box,
     Spinner,
 } from '@chakra-ui/react';
-import { useRouter } from 'next/navigation';
 
 export default function Page() {
-	const router = useRouter();
 	return (
 		<Box
 			display='flex'
