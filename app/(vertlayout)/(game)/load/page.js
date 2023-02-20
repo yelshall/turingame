@@ -2,9 +2,9 @@
 
 import {
 	Stack,
-	Button,
 	Heading,
 	Box,
+    Spinner,
 } from '@chakra-ui/react';
 import { useRouter } from 'next/navigation';
 
@@ -19,13 +19,19 @@ export default function Page() {
 			justifyContent='center'
 			alignItems={'center'}
 		>
-			<Heading fontSize={'6xl'} pb='16px'>Turingame</Heading>
+			<Heading fontSize={'3xl'} pb='16px'>Finding Match</Heading>
 			<Stack
 				justifyContent='center'
 				alignItems={'center'}
                 >
                     <br />
-				<Button onClick={() => {router.push('/')}} w='100px' colorScheme='green' size='lg' variant='solid'>Play</Button>
+                    <Spinner
+                    thickness='4px'
+                    speed='0.65s'
+                    emptyColor='gray.400'
+                    color='blue.500'
+                    size='xl'
+                    />
 			</Stack>
 		</Box>
 	);

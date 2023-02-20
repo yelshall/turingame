@@ -4,7 +4,6 @@ import {
 	Stack,
 	Button,
 	Heading,
-	SkeletonText,
 	Box,
 	Checkbox,
 	Text,
