@@ -10,6 +10,7 @@ import {
 } from '@chakra-ui/react';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+
 const AnswerItem = ({ text, question, onChange }) => {
 	return (
 		<Box
@@ -17,13 +18,15 @@ const AnswerItem = ({ text, question, onChange }) => {
 			flexDir={'column'}
 			w='100%'
 			pb="16px"
+			justifyContent={"center"}
+			alignItems={"center"}
 		>
 			<Heading fontSize={"2xl"} alignSelf={"flex-start"} pb="8px">{text}</Heading>
-			<Text pb="4px">{question}</Text>
+			<Text alignSelf={"flex-start"} pb="4px">{question}</Text>
 			<Input
 				placeholder={"Type your answer..."}
 				onChange={onChange}
-				w='500px'
+				w='100%'
 			/>
 		</Box>
 	)
@@ -59,16 +62,14 @@ export default function Page() {
 			<Heading fontSize={'4xl'} pb='16px'>
 				Answer the 3 questions
 			</Heading>
-			<Stack>
-				{answers.map((answer, index) => (
-					<AnswerItem
-						text={answer.text}
-						question={questions[index]}
-						onChange={(event) => { answer.setAnswer(event.target.value) }}
-					/>
-				))}
-				<Button bg='#2A4365' onClick={() => { router.push('/view') }}>Submit</Button>
-			</Stack>
+			{answers.map((answer, index) => (
+				<AnswerItem
+					text={answer.text}
+					question={questions[index]}
+					onChange={(event) => { answer.setAnswer(event.target.value) }}
+				/>
+			))}
+			<Button w="500px" bg='#2A4365' onClick={() => { router.push('/view') }}>Submit</Button>
 		</Box>
 	);
 }

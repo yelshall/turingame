@@ -3,13 +3,6 @@
 import {
   Flex,
   Box,
-  FormControl,
-  FormLabel,
-  Input,
-  InputGroup,
-  HStack,
-  InputRightElement,
-  Stack,
   Button,
   Heading,
   Text,
@@ -17,8 +10,6 @@ import {
   Link,
   Spinner,
 } from '@chakra-ui/react';
-import { useState } from 'react';
-import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
 import { Center } from '@chakra-ui/react';
 
 export default function Page() {

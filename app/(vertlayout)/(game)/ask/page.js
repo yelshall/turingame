@@ -4,7 +4,6 @@ import {
 	Button,
 	Heading,
 	Box,
-	Stack,
 	Input
 } from '@chakra-ui/react';
 import { useRouter } from 'next/navigation';
@@ -17,12 +16,14 @@ const QuestionItem = ({ text, onChange }) => {
 			flexDir={'column'}
 			w='100%'
 			pb="16px"
+			justifyContent={"center"}
+			alignItems={"center"}
 		>
 			<Heading fontSize={"2xl"} alignSelf={"flex-start"} pb="16px">{text}</Heading>
 			<Input
 				placeholder={"Type your question..."}
 				onChange={onChange}
-				w='500px'
+				w='100%'
 			/>
 		</Box>
 	)
@@ -53,12 +54,10 @@ export default function Page() {
 			<Heading fontSize={'4xl'} pb='16px'>
 				Ask your 3 questions
 			</Heading>
-			<Stack>
-				{questions.map((question) => (
-					<QuestionItem text={question.text} onChange={(event) => { question.setQuestion(event.target.value) }} />
-				))}
-				<Button bg='#2A4365' onClick={() => { router.push('/answer') }}>Submit</Button>
-			</Stack>
+			{questions.map((question) => (
+				<QuestionItem text={question.text} onChange={(event) => { question.setQuestion(event.target.value) }} />
+			))}
+			<Button w="500px" bg='#2A4365' onClick={() => { router.push('/answer') }}>Submit</Button>
 		</Box>
 	);
 }
