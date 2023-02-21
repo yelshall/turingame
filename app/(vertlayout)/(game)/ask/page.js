@@ -8,7 +8,7 @@ import {
 	Input
 } from '@chakra-ui/react';
 import { useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 const QuestionItem = ({ text, onChange }) => {
 	return (
@@ -27,17 +27,18 @@ const QuestionItem = ({ text, onChange }) => {
 		</Box>
 	)
 };
+
 export default function Page() {
 	const router = useRouter();
 
-	const [question1, setAnswer1] = useState('');
-	const [question2, setAnswer2] = useState('');
-	const [question3, setAnswer3] = useState('');
+	const [question1, setQuestion1] = useState('');
+	const [question2, setQuestion2] = useState('');
+	const [question3, setQuestion3] = useState('');
 
 	const questions = [
-		{ text: "Question 1", setAnswer: setAnswer1 },
-		{ text: "Question 2", setAnswer: setAnswer2 },
-		{ text: "Question 3", setAnswer: setAnswer3 },
+		{ text: "Question 1", setQuestion: setQuestion1 },
+		{ text: "Question 2", setQuestion: setQuestion2 },
+		{ text: "Question 3", setQuestion: setQuestion3 },
 	]
 
 	return (
@@ -54,7 +55,7 @@ export default function Page() {
 			</Heading>
 			<Stack>
 				{questions.map((question) => (
-					<QuestionItem text={question.text} onChange={(event) => { question.setAnswer(event.target.value) }} />
+					<QuestionItem text={question.text} onChange={(event) => { question.setQuestion(event.target.value) }} />
 				))}
 				<Button bg='#2A4365' onClick={() => { router.push('/answer') }}>Submit</Button>
 			</Stack>
