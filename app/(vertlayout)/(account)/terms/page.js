@@ -9,9 +9,14 @@ import {
 	Text,
 } from '@chakra-ui/react';
 import { useRouter } from 'next/navigation';
-
+import {useState} from 'react';
 export default function Page() {
 	const router = useRouter();
+	const [agreement, setAgreement] = useState(false);
+
+  const handleChange = (event) => {
+    setAgreement(event.target.checked);
+  }
 	return (
 		<Box
 			display='flex'
@@ -36,8 +41,8 @@ export default function Page() {
 				<br />
 				<Text fontSize='md'>Violating these community guidelines may result in account suspension or deletion.</Text>
 			</Box>
-			<Checkbox mb='16px'>I agree to the terms of service.</Checkbox>
-			<Button onClick={() => { router.push('/') }} w='300px' bg='#2A4365'>Create account</Button>
+			<Checkbox mb='16px' name = 'agreement' onChange={handleChange}>I agree to the terms of service.</Checkbox>
+			<Button isDisabled={!agreement} onClick={() => { router.push('/') }} w='300px' bg='#2A4365'>Create account</Button>
 		</Box>
 	);
 }
