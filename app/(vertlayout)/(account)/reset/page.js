@@ -14,9 +14,12 @@ import {
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 // import { verifyEmail } from '@/app/(util)/util';
+import { useStateContext } from '@/app/context/userAuthFunctions';
+
 
 export default function Page() {
 	const router = useRouter();
+	const {user, resetPassword } = useStateContext();
 
 	const [showOne, setShowOne] = useState(false)
 	const handleClickOne = () => setShowOne(!showOne)
@@ -26,6 +29,7 @@ export default function Page() {
 
 	const [newPassword, setNewPassword] = useState("")
 	const [newPasswordConfirm, setNewPasswordConfirm] = useState("")
+
 
 	return (
 		<Box

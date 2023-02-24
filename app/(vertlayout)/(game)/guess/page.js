@@ -16,7 +16,7 @@ import {
 } from '@chakra-ui/react';
 import { useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import EmojiRandomizer from '@/app/(components)/emojiRandomizer'
+import EmojiRandomizer from '../../../(components)/emojiRandomizer'
 
 const AnswerItem = ({ question, answer }) => {
 	return (

@@ -1,11 +1,11 @@
 'use client';
 
 import { ColorModeScript, Box, Container } from '@chakra-ui/react'
-import Theme from '@/app/(lib)/theme'
-import NavBar from '@/app/(components)/navbar'
-import Footer from '@/app/(components)/footer'
-import Providers from '@/app/(components)/providers'
-import Fonts from '@/app/(components)/fonts';
+import Theme from '../(lib)/theme'
+import NavBar from '../(components)/navbar'
+import Footer from '../(components)/footer.jsx'
+import Providers from '../(components)/providers'
+import Fonts from '../(components)/fonts';
 
 export default function Template({ children }) {
 	return (
