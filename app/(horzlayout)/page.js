@@ -7,8 +7,10 @@ import {
 	Text,
 	Button,
 } from '@chakra-ui/react';
+import { useRouter } from 'next/navigation';
 
 export default function Home() {
+	const router = useRouter();
 	return (
 		<Container maxW={'5xl'}>
 			<Stack
@@ -20,15 +22,10 @@ export default function Home() {
 					fontWeight={600}
 					fontSize={{ base: '3xl', sm: '4xl', md: '6xl' }}
 					lineHeight={'110%'}>
-					Meeting scheduling{' '}
-					<Text as={'span'} color={'orange.400'}>
-						made easy
-					</Text>
+					Turingame{' '}
 				</Heading>
 				<Text color={'gray.500'} maxW={'3xl'}>
-					Never miss a meeting. Never be late for one too. Keep track of your
-					meetings and receive smart reminders in appropriate times. Read your
-					smart “Daily Agenda” every morning.
+					Have an account?
 				</Text>
 				<Stack spacing={6} direction={'row'}>
 					<Button
@@ -36,8 +33,9 @@ export default function Home() {
 						px={6}
 						colorScheme={'orange'}
 						bg={'orange.400'}
-						_hover={{ bg: 'orange.500' }}>
-						Get started
+						_hover={{ bg: 'orange.500' }}
+						onClick={() => {router.push('/load')}}>
+						Start
 					</Button>
 					<Button rounded={'full'} px={6}>
 						Learn more
