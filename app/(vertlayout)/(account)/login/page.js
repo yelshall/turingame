@@ -39,30 +39,63 @@ export default function Page() {
 		console.log(email, password)
 	}, [email, password])
 
-	const handleContinue = async() => {
+	function sleep(time){
+		return new Promise((resolve)=>setTimeout(resolve,time)
+	  )
+  	}
+
+	const handleContinue = async () => {
+		try { 
+			const res = await logIn(email, password);
+			if (res) {
+				let timerInterval
+				await Swal.fire({
+				  title: 'Login Successful',
+				  html: 'redirecting you to the homepage...',
+				  timer: 4000,
+				  timerProgressBar: true,
+				  didOpen: () => {
+					Swal.showLoading()
+				  },
+				  willClose: () => {
+					clearInterval(timerInterval)
+				  }
+				})
+				router.push("/")
+			} else {
+				Swal.fire({title:"Login Failed", text:"Make Sure You Entered The Correct Email/Password", icon:"error"})
+			}
+		} catch (error) {
+			console.log(error);
+		} 
+	}
+	
+	const handleGoogle = async () => {
 		let res;
 		try {
-		res = await logIn(email, password);
-		if (user) {
-			router.push("/")
-		}
+			res = await googleSignIn();
+			if (res) {
+				let timerInterval
+				await Swal.fire({
+				  title: 'Login Successful',
+				  html: 'redirecting you to the homepage...',
+				  timer: 4000,
+				  timerProgressBar: true,
+				  didOpen: () => {
+					Swal.showLoading()
+				  },
+				  willClose: () => {
+					clearInterval(timerInterval)
+				  }
+				})
+				router.push("/")
+			}
 		} catch (e) {
-		console.log(e)
-		}
-	}
-	const handleGoogle = async() => {
-		let res;
-			try {
-		res = await googleSignIn();
-		if (user) {
-			router.push("/")
-		}
-		} catch (e) {
-		console.log(e)
+			console.log(e)
 		}
 	}
 
-	
+
 
 
 	return (
@@ -103,18 +136,16 @@ export default function Page() {
 				</FormControl>
 
 				<Text pb='8px' color={'#2B6CB0'}><Link href='/forgot'>Forgot password</Link></Text>
-				<Button bg='#2A4365' onClick={() => {handleContinue()}}>Sign in</Button>
+				<Button bg='#2A4365' onClick={() => { handleContinue() }}>Sign in</Button>
 				<Box display='flex' flexDir='row'>
 					<Text>Don't have an account?</Text> <Text pl='2px' color={'#2B6CB0'}> <Link href='/terms'>Sign up</Link> </Text>
 				</Box>
-				<Box display='flex' flexDir='row'>
-					<button onClick={() => {handleReset()}}> <Text color={'#2B6CB0'}>Forgot Password?</Text> </button>
-				</Box>
+			
 				<Divider />
 				<Button
 					variant={'outline'}
 					leftIcon={<FcGoogle />}
-					onClick={()=>{handleGoogle()}}>
+					onClick={() => { handleGoogle() }}>
 					Continue with Google
 				</Button>
 			</Stack >

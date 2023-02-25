@@ -3,6 +3,7 @@ import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
+import { useStateContext } from "../context/userAuthFunctions";
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -18,7 +19,7 @@ const firebaseConfig = {
     appId: "1:672739661251:web:2fc33fe2b083097a715976",
     measurementId: "G-P9YNL7WWQH"
 };
-  
+
 
 // Initialize Firebase
 let analytics;
@@ -32,22 +33,13 @@ export const initFirebase = () => {
     return app;
 }
 
-export {analytics}
+export { analytics }
 
 export const db = getFirestore(app);
 
 
 export const auth = getAuth();
-onAuthStateChanged(auth, (user) => {
-  if (user) {
-    // User is signed in, see docs for a list of available properties
-    // https://firebase.google.com/docs/reference/js/firebase.User
-    console.log(user)
-    // ...
-  } else {
-    // User is signed out
-    // ...
-  }
-});
+
+
 
 
