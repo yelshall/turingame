@@ -16,11 +16,21 @@ import {
 import Link from 'next/link';
 import { FcGoogle } from 'react-icons/fc';
 import { useEffect, useState } from 'react';
+import { useStateContext } from '../../../context/userAuthFunctions';
+import { useRouter } from 'next/navigation';
+import Swal from 'sweetalert2'
+
+
+
 // import { verifyEmail } from '@/app/(util)/util';
 
 export default function Page() {
 	const [show, setShow] = useState(false)
 	const handleClick = () => setShow(!show)
+	const router = useRouter();
+
+	const { signUp, googleSignIn, logIn, user, resetPassword } = useStateContext()
+
 
 	const [email, setEmail] = useState("")
 	const [password, setPassword] = useState("")
@@ -28,6 +38,66 @@ export default function Page() {
 	useEffect(() => {
 		console.log(email, password)
 	}, [email, password])
+
+	function sleep(time){
+		return new Promise((resolve)=>setTimeout(resolve,time)
+	  )
+  	}
+
+	const handleContinue = async () => {
+		try { 
+			const res = await logIn(email, password);
+			if (res) {
+				let timerInterval
+				await Swal.fire({
+				  title: 'Login Successful',
+				  html: 'redirecting you to the homepage...',
+				  timer: 4000,
+				  timerProgressBar: true,
+				  didOpen: () => {
+					Swal.showLoading()
+				  },
+				  willClose: () => {
+					clearInterval(timerInterval)
+				  }
+				})
+				router.push("/")
+			} else {
+				Swal.fire({title:"Login Failed", text:"Make Sure You Entered The Correct Email/Password", icon:"error"})
+			}
+		} catch (error) {
+			console.log(error);
+		} 
+	}
+	
+	const handleGoogle = async () => {
+		let res;
+		try {
+			res = await googleSignIn();
+			if (res) {
+				let timerInterval
+				await Swal.fire({
+				  title: 'Login Successful',
+				  html: 'redirecting you to the homepage...',
+				  timer: 4000,
+				  timerProgressBar: true,
+				  didOpen: () => {
+					Swal.showLoading()
+				  },
+				  willClose: () => {
+					clearInterval(timerInterval)
+				  }
+				})
+				router.push("/")
+			}
+		} catch (e) {
+			console.log(e)
+		}
+	}
+
+
+
+
 	return (
 		<Box
 			display='flex'
@@ -66,14 +136,16 @@ export default function Page() {
 				</FormControl>
 
 				<Text pb='8px' color={'#2B6CB0'}><Link href='/forgot'>Forgot password</Link></Text>
-				<Button bg='#2A4365'>Sign in</Button>
+				<Button bg='#2A4365' onClick={() => { handleContinue() }}>Sign in</Button>
 				<Box display='flex' flexDir='row'>
-					<Text>Don't have an account?</Text> <Text pl='2px' color={'#2B6CB0'}><Link href='/signup'>Sign up</Link></Text>
+					<Text>Don't have an account?</Text> <Text pl='2px' color={'#2B6CB0'}> <Link href='/terms'>Sign up</Link> </Text>
 				</Box>
+			
 				<Divider />
 				<Button
 					variant={'outline'}
-					leftIcon={<FcGoogle />}>
+					leftIcon={<FcGoogle />}
+					onClick={() => { handleGoogle() }}>
 					Continue with Google
 				</Button>
 			</Stack >
