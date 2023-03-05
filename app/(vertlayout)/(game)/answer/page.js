@@ -220,6 +220,18 @@ export default function Page() {
 		}
 	}
 	
+	var count=60;
+	var counter=setInterval(timer, 1000);
+	function timer() {
+		count=count-1;
+		if (count < 0) {
+			clearInterval(counter);
+			handleSubmit();
+			return;
+		}
+		document.getElementById("timer").innerHTML=count + " seconds";
+	}
+
 
 	return (
 		<Box
@@ -247,6 +259,7 @@ export default function Page() {
 					handleSubmit()}} >
 						Submit
 			</Button>
+			<span id="timer"></span>
 
 			
 		</Box>

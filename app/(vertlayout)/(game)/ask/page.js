@@ -176,6 +176,18 @@ export default function Page() {
 		{ text: "Question 2", setQuestion: setQuestion2 },
 		{ text: "Question 3", setQuestion: setQuestion3 },
 	]
+	
+	var count=60;
+	var counter=setInterval(timer, 1000);
+	function timer() {
+		count=count-1;
+		if (count < 0) {
+			clearInterval(counter);
+			handleSubmit();
+			return;
+		}
+		document.getElementById("timer").innerHTML=count + " seconds";
+	}
 
 	return (
 		<Box
@@ -186,13 +198,16 @@ export default function Page() {
 			justifyContent='center'
 			alignItems={'center'}
 		>
-			<Heading fontSize={'4xl'} pb='16px'>
-				Ask your 3 questions
-			</Heading>
-			{questions.map((question) => (
-				<QuestionItem text={question.text} onChange={(event) => { question.setQuestion(event.target.value) }} />
-			))}
-			<Button w="500px" bg='#2A4365' onClick={() => { handleSubmit()}}>Submit</Button>
-		</Box>
+				<Heading fontSize={'4xl'} pb='16px'>
+					Ask your 3 questions
+				</Heading>
+
+				{questions.map((question) => (
+					<QuestionItem text={question.text} onChange={(event) => { question.setQuestion(event.target.value); } } />
+				))}
+				<Button w="500px" bg='#2A4365' onClick={() => { handleSubmit(); } }>Submit</Button>
+				<span id="timer"></span>
+			</Box>
+			
 	);
 }
